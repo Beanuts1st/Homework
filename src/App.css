@@ -5,6 +5,7 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  border-radius: 50%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -23,9 +24,43 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.Card {
+  background-color: #263147;
+  border-radius: 10%;
+  padding: 40px;
+}
+.btn {
+  background-color: #4cd13b;
+  border: none;
+  border-radius: 100%;
+  margin-top: 40px;
+  width: 50px;
+  height: 50px;
+  font-weight: bold;
+  color: rgb(54, 56, 56);
+  float: left;
+}
+.btn:hover {
+  opacity: 50%;
+}
+.lirik {
+  float: right;
+  border-radius: 100%;
+}
 
+ul {
+  list-style: none;
+}
+ul li {
+  font-weight: bold;
+}
 .App-link {
-  color: #61dafb;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.App-link:hover {
+  opacity: 50%;
 }
 
 @keyframes App-logo-spin {
