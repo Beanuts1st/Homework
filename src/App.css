@@ -1,3 +1,6 @@
+* {
+  overflow-x: hidden;
+}
 .App {
   text-align: center;
 }
@@ -24,10 +27,16 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.Card {
+.parent-card {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
   background-color: #263147;
   border-radius: 10%;
-  padding: 40px;
+  margin: 50px 50px;
+  flex: auto;
+  width: 40%;
 }
 .btn {
   background-color: #4cd13b;
@@ -38,21 +47,20 @@
   height: 50px;
   font-weight: bold;
   color: rgb(54, 56, 56);
-  float: left;
+  flex: none;
+  margin: 10px 150px 50px 150px;
 }
 .btn:hover {
   opacity: 50%;
 }
 .lirik {
-  float: right;
   border-radius: 100%;
 }
-
-ul {
-  list-style: none;
+.album-header {
+  margin-top: 20px;
 }
-ul li {
-  font-weight: bold;
+.album-info {
+  margin-bottom: 20px;
 }
 .App-link {
   color: white;
@@ -69,5 +77,21 @@ ul li {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1600px) {
+  .btn {
+    margin: 10px 50px 30px 50px;
+  }
+}
+@media (max-width: 1000px) {
+  .btn {
+    margin: 10px 50px 30px 50px;
+  }
+}
+@media (max-width: 670px) {
+  .btn {
+    margin: 10px 20px 30px 20px;
   }
 }

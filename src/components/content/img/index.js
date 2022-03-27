@@ -1,9 +1,5 @@
 const Image = ({ url }) => {
-  return (
-    <div className="album-image">
-      <img className="album-img" src={url} alt="img" />
-    </div>
-  );
+  return <img className="App-logo" src={url} alt="img" />;
 };
 
 export default Image;

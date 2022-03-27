@@ -1,3 +1,4 @@
+import "../../../App.css";
 const Action = ({ urlAlbum, urlLyric }) => {
   return (
     <div>
