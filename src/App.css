@@ -19,7 +19,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 500vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,6 +28,8 @@
   color: white;
 }
 .parent-card {
+  position: absolute;
+  top: 50px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -94,4 +96,29 @@
   .btn {
     margin: 10px 20px 30px 20px;
   }
+}
+.App-search {
+  display: flex;
+  position: absolute;
+  top: 40px;
+}
+.App-search input {
+  border-radius: 20px;
+  border: none;
+  margin-right: 10px;
+  height: 30px;
+}
+
+.App-login {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+}
+.App-login a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.App-login a:hover {
+  opacity: 80%;
 }
