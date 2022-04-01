@@ -122,3 +122,12 @@
 .App-login a:hover {
   opacity: 80%;
 }
+.btn-select{
+ 
+  border: none;
+  border-radius: 100%;
+  width: 80px;
+  height: 50px;
+  font-weight: bold;
+  color: rgb(54, 56, 56);
+}
