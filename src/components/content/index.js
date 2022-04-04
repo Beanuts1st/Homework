@@ -1,8 +1,9 @@
+import "./info/style.css";
 const Content = ({ album_type, album_name }) => {
   return (
     <div className="album-header">
-      {album_type}
-      <div>{album_name}</div>
+      <p>{album_type}</p>
+      <p>{album_name}</p>
     </div>
   );
 };

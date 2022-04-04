@@ -1,7 +1,7 @@
-import "../../../App.css";
+import "./style.css";
 const Action = ({ urlAlbum, urlLyric }) => {
   return (
-    <div>
+    <div className="tombol">
       <a href={urlAlbum}>
         <button className="btn">album</button>
       </a>

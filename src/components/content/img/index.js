@@ -1,5 +1,6 @@
+import "./style.css";
 const Image = ({ url }) => {
-  return <img className="App-logo" src={url} alt="img" />;
+  return <img className="song-image" src={url} alt="img" />;
 };
 
 export default Image;

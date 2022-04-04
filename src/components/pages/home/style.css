@@ -1,0 +1,52 @@
+.App-topwrapper{
+    background-color: rgb(93, 100, 116);
+    padding-bottom: 10px;
+}
+.App-contentwrapper{
+    background-color: rgb(82, 90, 107);
+}
+.App-login{
+    float: right;
+    margin-right: 30px;
+    padding-top: 10px;
+}
+.App-login a{
+    text-decoration: none;
+    color: aliceblue;
+}
+.App-header{
+    background-color: #3b312e;
+    min-height: 8vh;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+.App-search{
+    padding-top: 10px;
+    margin-left: 38%;
+}
+.search-input{
+    width: 400px;
+    height: 40px;
+}
+.parent-card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.card {
+    background-color: #263147;
+    border-radius: 10%;
+    margin: 50px 50px;
+    flex: auto;
+    width: 300px;
+    height: 400px;
+    text-align: center;
+}
+.btn-select{
+    margin-top: -5px;
+    background-color: rgb(63, 67, 71);
+    height: 30px;
+    width: 10vh;
+    border-radius: 10px;
+    color: aliceblue;
+}

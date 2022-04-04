@@ -1,33 +1,28 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Content from "../../content";
 import Action from "../../content/action";
 import url from "../../content/autorization";
 import Image from "../../content/img";
 import Info from "../../content/info";
-import "../../../App.css";
+import "./style.css";
+import SearchBar from "../searchbar";
+import CreatePlaylist from "../playlist";
 
 const Home = () => {
-  const [search, setSearch] = useState("ed sheeran");
+  const [search, setSearch] = useState("");
   const [tracks, setTracks] = useState([]);
   const [selected, setSelected] = useState([]);
-
-  useEffect(() => {
-    getTracks(search);
-  }, [search]);
-
+  const [playlist, setPlaylist] = useState({
+    title: "",
+    description: "",
+  });
   const HandleSelected = (uri) => {
     const alreadySelected = selected.find((selectedUri) => selectedUri === uri);
-    if (alreadySelected) {
-      const filteredTracks = selected.filter(
-        (selectedUri) => selectedUri !== uri
-      );
-      setSelected(filteredTracks);
-    } else {
-      setSelected([...selected, uri]);
-    }
+    alreadySelected
+      ? setSelected(selected.filter((selectedUri) => selectedUri !== uri))
+      : setSelected([...selected, uri]);
   };
-
   const getQueryParams = (string) => {
     const queries = string.substring(1).split("&");
     const finalObj = {};
@@ -39,11 +34,49 @@ const Home = () => {
   };
   const query = getQueryParams(window.location.hash);
 
+  const handleAddPlaylist = async (e) => {
+    e.preventDefault();
+    axios
+      .get("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${query.access_token}`,
+        },
+      })
+      .then((res) => {
+        axios
+          .post(
+            `https://api.spotify.com/v1/users/${res.data.id}/playlists`,
+            {
+              name: playlist.title,
+              description: playlist.description,
+              public: false,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${query.access_token}`,
+              },
+            }
+          )
+          .then((res) => {
+            axios.post(
+              `https://api.spotify.com/v1/playlists/${res.data.id}/tracks`,
+              { uris: selected },
+              {
+                headers: {
+                  Authorization: `Bearer ${query.access_token}`,
+                },
+              }
+            );
+            alert("Playlist created");
+          });
+      });
+  };
+
   const getTracks = (search) => {
     axios
       .get(`https://api.spotify.com/v1/search`, {
         headers: { Authorization: `Bearer ${query.access_token}` },
-        params: { q: search, type: "track,artist", limit: 12 },
+        params: { q: search, type: "track,artist" },
       })
       .then((res) => {
         const item = res.data.tracks.items;
@@ -51,28 +84,38 @@ const Home = () => {
         setTracks(item);
       });
   };
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+  const handlePlaylistChange = (e) => {
+    const { name, value } = e.target;
+    setPlaylist({ ...playlist, [name]: value });
+  };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="App-search">
-          <input
-            placeholder="Search Track or Artist"
-            onChange={(event) => {
-              setSearch(event.target.value);
-            }}
-          />
-          <input
-            type="submit"
-            value="Search"
-            onClick={() => {
+    <>
+      <div className="App-topwrapper">
+        <div className="App-header">
+          <div className="App-login">
+            <a href={url}>login</a>
+          </div>
+          <SearchBar
+            handleSubmit={(e) => {
               getTracks(search);
+              e.preventDefault();
             }}
+            handleChange={handleChange}
           />
         </div>
-        <div className="App-login">
-          <a href={url}>login</a>
+        <div>
+          <CreatePlaylist
+            list={playlist}
+            handleChange={handlePlaylistChange}
+            handleSubmit={handleAddPlaylist}
+          />
         </div>
+      </div>
+      <div className="App-contentwrapper">
         <div className="parent-card">
           {tracks.map((e) => {
             const isSelected = selected.find(
@@ -107,8 +150,9 @@ const Home = () => {
             );
           })}
         </div>
-      </header>
-    </div>
+      </div>
+    </>
   );
 };
+
 export default Home;
