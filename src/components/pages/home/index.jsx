@@ -8,7 +8,8 @@ import Info from "../../content/info";
 import "./style.css";
 import SearchBar from "../searchbar";
 import CreatePlaylist from "../playlist";
-
+import { useSelector, useDispatch } from "react-redux";
+import { getToken } from "../../redux/tokenSlice";
 const Home = () => {
   const [search, setSearch] = useState("");
   const [tracks, setTracks] = useState([]);
@@ -17,6 +18,10 @@ const Home = () => {
     title: "",
     description: "",
   });
+
+  const token = useSelector((state) => state.token.token);
+  const dispatch = useDispatch();
+
   const HandleSelected = (uri) => {
     const alreadySelected = selected.find((selectedUri) => selectedUri === uri);
     alreadySelected
@@ -33,13 +38,14 @@ const Home = () => {
     return finalObj;
   };
   const query = getQueryParams(window.location.hash);
-
+  const queryHash = query.access_token;
+  dispatch(getToken(queryHash));
   const handleAddPlaylist = async (e) => {
     e.preventDefault();
     axios
       .get("https://api.spotify.com/v1/me", {
         headers: {
-          Authorization: `Bearer ${query.access_token}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
@@ -53,7 +59,7 @@ const Home = () => {
             },
             {
               headers: {
-                Authorization: `Bearer ${query.access_token}`,
+                Authorization: `Bearer ${token}`,
               },
             }
           )
@@ -63,7 +69,7 @@ const Home = () => {
               { uris: selected },
               {
                 headers: {
-                  Authorization: `Bearer ${query.access_token}`,
+                  Authorization: `Bearer ${token}`,
                 },
               }
             );
@@ -75,7 +81,7 @@ const Home = () => {
   const getTracks = (search) => {
     axios
       .get(`https://api.spotify.com/v1/search`, {
-        headers: { Authorization: `Bearer ${query.access_token}` },
+        headers: { Authorization: `Bearer ${token}` },
         params: { q: search, type: "track,artist" },
       })
       .then((res) => {
