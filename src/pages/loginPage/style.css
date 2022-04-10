@@ -1,0 +1,21 @@
+
+.login-Page{
+    text-align: center;
+    margin: 100px 0;
+}
+.login{
+    background-color: #07f562;
+    border-radius: 20px;
+    width: 200px;
+    height: 50px;
+    border: none;
+}
+.login:hover{
+    opacity: 70%;
+}
+.login-Page h1{
+    font-size:2em;
+}
+.login-Page h1,h2, .login{
+    color: rgb(82, 79, 79);
+}

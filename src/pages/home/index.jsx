@@ -1,15 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
-import Content from "../../content";
-import Action from "../../content/action";
-import url from "../../content/autorization";
-import Image from "../../content/img";
-import Info from "../../content/info";
+import Content from "../../components/content";
+import Action from "../../components/content/action";
+import Image from "../../components/content/img";
+import Info from "../../components/content/info";
 import "./style.css";
-import SearchBar from "../searchbar";
-import CreatePlaylist from "../playlist";
-import { useSelector, useDispatch } from "react-redux";
-import { getToken } from "../../redux/tokenSlice";
+import SearchBar from "../searchbar/";
+import CreatePlaylist from "../../components/playlist/";
+import { useSelector } from "react-redux";
+import LogIn from "../../components/loginControl";
+
 const Home = () => {
   const [search, setSearch] = useState("");
   const [tracks, setTracks] = useState([]);
@@ -20,7 +20,6 @@ const Home = () => {
   });
 
   const token = useSelector((state) => state.token.token);
-  const dispatch = useDispatch();
 
   const HandleSelected = (uri) => {
     const alreadySelected = selected.find((selectedUri) => selectedUri === uri);
@@ -28,18 +27,7 @@ const Home = () => {
       ? setSelected(selected.filter((selectedUri) => selectedUri !== uri))
       : setSelected([...selected, uri]);
   };
-  const getQueryParams = (string) => {
-    const queries = string.substring(1).split("&");
-    const finalObj = {};
-    queries.forEach((query) => {
-      const arr = query.split("=");
-      if (arr.length > 1) finalObj[arr[0]] = arr[1];
-    });
-    return finalObj;
-  };
-  const query = getQueryParams(window.location.hash);
-  const queryHash = query.access_token;
-  dispatch(getToken(queryHash));
+
   const handleAddPlaylist = async (e) => {
     e.preventDefault();
     axios
@@ -102,9 +90,6 @@ const Home = () => {
     <>
       <div className="App-topwrapper">
         <div className="App-header">
-          <div className="App-login">
-            <a href={url}>login</a>
-          </div>
           <SearchBar
             handleSubmit={(e) => {
               getTracks(search);
