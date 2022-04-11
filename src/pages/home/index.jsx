@@ -1,14 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import Content from "../../components/content";
-import Action from "../../components/content/action";
-import Image from "../../components/content/img";
-import Info from "../../components/content/info";
 import "./style.css";
-import SearchBar from "../searchbar/";
+import SearchBar from "../../components/searchbar";
 import CreatePlaylist from "../../components/playlist/";
 import { useSelector } from "react-redux";
-import LogIn from "../../components/loginControl";
+import LogIn from "../../components/isLogIn";
+import Card from "../../components/card";
 
 const Home = () => {
   const [search, setSearch] = useState("");
@@ -89,6 +86,7 @@ const Home = () => {
   return (
     <>
       <div className="App-topwrapper">
+        <LogIn />
         <div className="App-header">
           <SearchBar
             handleSubmit={(e) => {
@@ -113,31 +111,20 @@ const Home = () => {
               (selectedUri) => selectedUri === e.uri
             );
             return (
-              <div className="card" key={e.id}>
-                <Content
-                  album_type={e.album.album_type}
-                  album_name={e.album.name}
-                />
-                <Info
-                  url={e.album.artists[0].external_urls.spotify}
-                  name={e.album.artists[0].name}
-                  release_date={e.album.release_date}
-                  total_tracks={e.album.total_tracks}
-                />
-                <Image url={e.album.images[0].url} />
-                <button
-                  className="btn-select"
-                  onClick={() => {
-                    HandleSelected(e.uri);
-                  }}
-                >
-                  {isSelected ? "deselect" : "select"}
-                </button>
-                <Action
-                  urlAlbum={e.album.external_urls.spotify}
-                  urlLyric={e.external_urls.spotify}
-                />
-              </div>
+              <Card
+                key={e.id}
+                album_type={e.album.album_type}
+                album_name={e.album.name}
+                urla={e.album.artists[0].external_urls.spotify}
+                name={e.album.artists[0].name}
+                release_date={e.album.release_date}
+                total_tracks={e.album.total_tracks}
+                url={e.album.images[0].url}
+                urlLyric={e.external_urls.spotify}
+                urlAlbum={e.album.external_urls.spotify}
+                handleClick={() => HandleSelected(e.uri)}
+                isSelected={isSelected ? "deselect" : "select"}
+              />
             );
           })}
         </div>

@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { getToken } from "../../components/redux/tokenSlice";
-import url from "../content/autorization";
+import { getToken } from "../redux/tokenSlice";
+import url from "../autorization";
+import "./style.css";
 
 const LogIn = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token.token);
-
   useEffect(() => {
     const getQueryParams = (string) => {
       const queries = string.substring(1).split("&");
@@ -25,6 +24,9 @@ const LogIn = () => {
     }
   }, [dispatch, token]);
 
+  const logout = () => {
+    dispatch(getToken(""));
+  };
   return (
     <>
       {!token ? (
@@ -32,7 +34,11 @@ const LogIn = () => {
           <button className="login">Login Spotify</button>
         </a>
       ) : (
-        <Redirect to="/home" />
+        <>
+          <button className="btn logout" onClick={logout}>
+            logout
+          </button>
+        </>
       )}
     </>
   );

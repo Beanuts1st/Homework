@@ -1,4 +1,4 @@
-import LogIn from "../../components/loginControl";
+import LogIn from "../../components/isLogIn";
 import "./style.css";
 
 const LoginPage = () => {
