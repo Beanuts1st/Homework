@@ -1,0 +1,24 @@
+
+.App-search {
+    padding-top: 10px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: none;
+    overflow: hidden;
+}
+.btn.search{
+width: 60px;
+height: 40px;
+margin-left: 10px;
+border: none;
+border-radius: 10px;
+overflow: hidden;
+}
+.search-input {
+    border-radius: 10px;
+    width: 400px;
+    height: 40px;
+    box-sizing: border-box;
+    border: none;
+    overflow: hidden;
+}

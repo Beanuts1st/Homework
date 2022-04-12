@@ -86,8 +86,8 @@ const Home = () => {
   return (
     <>
       <div className="App-topwrapper">
-        <LogIn />
         <div className="App-header">
+          <LogIn />
           <SearchBar
             handleSubmit={(e) => {
               getTracks(search);
@@ -104,31 +104,35 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="App-contentwrapper">
-        <div className="parent-card">
-          {tracks.map((e) => {
-            const isSelected = selected.find(
-              (selectedUri) => selectedUri === e.uri
-            );
-            return (
-              <Card
-                key={e.id}
-                album_type={e.album.album_type}
-                album_name={e.album.name}
-                urla={e.album.artists[0].external_urls.spotify}
-                name={e.album.artists[0].name}
-                release_date={e.album.release_date}
-                total_tracks={e.album.total_tracks}
-                url={e.album.images[0].url}
-                urlLyric={e.external_urls.spotify}
-                urlAlbum={e.album.external_urls.spotify}
-                handleClick={() => HandleSelected(e.uri)}
-                isSelected={isSelected ? "deselect" : "select"}
-              />
-            );
-          })}
+      {tracks.length > 0 ? (
+        <div className="App-contentwrapper">
+          <div className="parent-card">
+            {tracks.map((e) => {
+              const isSelected = selected.find(
+                (selectedUri) => selectedUri === e.uri
+              );
+              return (
+                <Card
+                  key={e.id}
+                  album_type={e.album.album_type}
+                  album_name={e.album.name}
+                  urla={e.album.artists[0].external_urls.spotify}
+                  name={e.album.artists[0].name}
+                  release_date={e.album.release_date}
+                  total_tracks={e.album.total_tracks}
+                  url={e.album.images[0].url}
+                  urlLyric={e.external_urls.spotify}
+                  urlAlbum={e.album.external_urls.spotify}
+                  handleClick={() => HandleSelected(e.uri)}
+                  isSelected={isSelected ? "deselect" : "select"}
+                />
+              );
+            })}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="App-footer"></div>
+      )}
     </>
   );
 };

@@ -1,3 +1,4 @@
+import "./style.css";
 const SearchBar = ({ handleSubmit, handleChange }) => {
   return (
     <div className="App-search">
@@ -9,7 +10,12 @@ const SearchBar = ({ handleSubmit, handleChange }) => {
           name="search"
           onChange={handleChange}
         />
-        <input type="submit" value="Search" onClick={handleSubmit} />
+        <input
+          type="submit"
+          className="btn search"
+          value="Search"
+          onClick={handleSubmit}
+        />
       </form>
     </div>
   );

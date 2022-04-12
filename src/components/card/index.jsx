@@ -14,28 +14,27 @@ const Card = ({
 }) => {
   return (
     <div className="card">
-      <div className="album-header">
-        <p>{album_type}</p>
-        <p>{album_name}</p>
+      <div className="card-header">
+        <img src={url} alt="img" />
       </div>
-      <div className="album-info">
-        <a className="App-link" href={urla}>
-          {name}
-        </a>{" "}
-        . {release_date} . {total_tracks} Lagu
+      <div className="card-content">
+        <ul>
+          <li>
+            <h3>{album_type}</h3>
+          </li>
+          <li>
+            <h4>{name}</h4>
+          </li>
+          <li>
+            <h4>{album_name}</h4>
+          </li>
+          <li>
+            <button className="btn select" onClick={handleClick}>
+              {isSelected}
+            </button>
+          </li>
+        </ul>
       </div>
-      <img className="song-image" src={url} alt="img" />;
-      <div className="tombol">
-        <a href={urlAlbum}>
-          <button className="btn">album</button>
-        </a>
-        <a href={urlLyric}>
-          <button className="btn lyric">lyric</button>
-        </a>
-      </div>
-      <button className="btn select" onClick={handleClick}>
-        {isSelected}
-      </button>
     </div>
   );
 };

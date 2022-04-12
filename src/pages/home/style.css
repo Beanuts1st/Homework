@@ -1,52 +1,36 @@
+
 .App-topwrapper{
-    background-color: rgb(93, 100, 116);
-    padding-bottom: 10px;
+    background-color: rgb(54, 52, 62);
 }
 .App-contentwrapper{
-    background-color: rgb(82, 90, 107);
+    background-color: rgb(54, 52, 62);
 }
-.App-login{
-    float: right;
-    margin-right: 30px;
-    padding-top: 10px;
+.App-footer{
+    background-color: rgb(54, 52, 62);
+    height: 144px;
 }
-.App-login a{
-    text-decoration: none;
-    color: aliceblue;
-}
+
 .App-header{
-    background-color: #3b312e;
+    background-color: #3a3843;
     min-height: 8vh;
     font-size: calc(10px + 2vmin);
     color: white;
-}
-.App-search{
-    padding-top: 10px;
-    margin-left: 38%;
-}
-.search-input{
-    width: 400px;
-    height: 40px;
-}
-.parent-card{
+    padding: 20px;
+    box-sizing: border-box;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: row-reverse;
+    align-items: baseline;
 }
-.card {
-    background-color: #263147;
-    border-radius: 10%;
-    margin: 50px 50px;
-    flex: auto;
-    width: 300px;
-    height: 400px;
-    text-align: center;
-}
-.btn-select{
-    margin-top: -5px;
-    background-color: rgb(63, 67, 71);
-    height: 30px;
-    width: 10vh;
-    border-radius: 10px;
-    color: aliceblue;
+
+
+.parent-card {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 3px solid rgb(124, 118, 118);
+    padding: 20px;
+    box-sizing: border-box;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: #3a3843;
 }

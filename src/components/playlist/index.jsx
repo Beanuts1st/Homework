@@ -7,6 +7,7 @@ const CreatePlaylist = ({ list, handleChange, handleSubmit }) => {
         <form onSubmit={handleSubmit}>
           <h2>Title</h2>
           <input
+            size="30"
             className="playlist-title"
             type="text"
             placeholder="Insert Playlist Title"
@@ -18,9 +19,10 @@ const CreatePlaylist = ({ list, handleChange, handleSubmit }) => {
           <h2>Description</h2>
           <textarea
             cols="30"
-            rows="10"
+            rows="5"
             className="playlist-description"
-            placeholder="Insert Playlist Description"
+            placeholder=" 
+            Insert Playlist Description "
             name="description"
             value={list.description}
             onChange={handleChange}
