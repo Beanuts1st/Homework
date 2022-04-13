@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getToken } from "../redux/tokenSlice";
 import url from "../autorization";
-import "./style.css";
+import Button from "@mui/material/Button";
 
 const LogIn = () => {
   const dispatch = useDispatch();
@@ -30,14 +30,14 @@ const LogIn = () => {
   return (
     <>
       {!token ? (
-        <a href={url}>
-          <button className="login">Login Spotify</button>
-        </a>
+        <Button href={url} variant="contained" color="success">
+          Login Spotify UI
+        </Button>
       ) : (
         <>
-          <button className="btn logout" onClick={logout}>
-            logout
-          </button>
+          <Button href="/" onClick={logout} variant="contained">
+            Log Out
+          </Button>
         </>
       )}
     </>

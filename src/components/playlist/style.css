@@ -8,39 +8,31 @@
     box-sizing: border-box;
     width: 800px;
     display: inline-block;
-    
+
 }
 
-.container{
- 
-    display: inline-block;
-    padding: 30px;
-    box-sizing: border-box;
-}
-.container h2{
-    margin-bottom: 10px;
-    color: white;
-}
-.container .playlist-submit{
-    margin-bottom: 40px;
-    border: none;
-    overflow: hidden;
-    width: 150px;
-    height: 30px;
-    border-radius: 10px;
-    background-color: rgb(48, 196, 48);
-    font-weight: 600;
-    transition: all 0.3s;
-}
 
 .playlist-submit:hover{
    opacity: 60%;
 }
-
-.container input,textarea{
-    border: none;
-    border-radius: 10px;
-}
-.container input{
+.playlist-submit {
     height: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: none;
+    background-color: rgb(48, 196, 48);
+    font-weight: 600;
+}
+.playlist-title{
+    margin-top:10px;
+    height: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: none;
+}
+.playlist-description{
+    margin-top:10px;
+    border: none;
+    border-radius: 5px;
+    overflow: hidden;
 }
