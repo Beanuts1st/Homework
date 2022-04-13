@@ -1,21 +1,26 @@
 import "./style.css";
+import Input from "@mui/material/Input";
 const SearchBar = ({ handleSubmit, handleChange }) => {
   return (
     <div className="App-search">
       <form onSubmit={handleSubmit}>
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Search..."
-          name="search"
+        <Input
+          style={{
+            backgroundColor: "white ",
+            borderRadius: "10px",
+          }}
+          placeholder="Tap here to search"
           onChange={handleChange}
-        />
-        <input
+        ></Input>
+        <Input
+          style={{
+            marginLeft: "10px",
+            backgroundColor: "white ",
+            borderRadius: "10px",
+          }}
           type="submit"
-          className="btn search"
-          value="Search"
-          onClick={handleSubmit}
-        />
+          onChange={handleSubmit}
+        ></Input>
       </form>
     </div>
   );
