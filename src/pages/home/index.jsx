@@ -69,11 +69,7 @@ const Home = () => {
         headers: { Authorization: `Bearer ${token}` },
         params: { q: search, type: "track,artist" },
       })
-      .then((res) => {
-        const item = res.data.tracks.items;
-        console.log(item);
-        setTracks(item);
-      });
+      .then((res) => setTracks(res.data.tracks.items));
   };
   const handleChange = (e) => {
     setSearch(e.target.value);

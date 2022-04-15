@@ -6,36 +6,35 @@ import Button from "@mui/material/Button";
 
 const LogIn = () => {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.token.token);
+  const isLogin = useSelector((state) => state.token.token);
+
   useEffect(() => {
-    const getQueryParams = (string) => {
-      const queries = string.substring(1).split("&");
-      const finalObj = {};
-      queries.forEach((query) => {
-        const arr = query.split("=");
-        if (arr.length > 1) finalObj[arr[0]] = arr[1];
-      });
-      return finalObj;
-    };
-    const query = getQueryParams(window.location.hash);
-    const queryHash = query.access_token;
-    if (queryHash) {
-      dispatch(getToken(queryHash));
+    let auth = window.localStorage.getItem("auth");
+    const getQueryParams = window.location.hash;
+    if (getQueryParams) {
+      auth = getQueryParams
+        .substring(1)
+        .split("&")
+        .find((token) => token.startsWith("access_token"))
+        .split("=")[1];
     }
-  }, [dispatch, token]);
+    dispatch(getToken(auth));
+    window.localStorage.setItem("auth", auth);
+  }, [dispatch, isLogin]);
 
   const logout = () => {
     dispatch(getToken(""));
+    window.localStorage.setItem("auth", "");
   };
   return (
     <>
-      {!token ? (
+      {!isLogin ? (
         <Button href={url} variant="contained" color="success">
           Login Spotify UI
         </Button>
       ) : (
         <>
-          <Button href="/" onClick={logout} variant="contained">
+          <Button onClick={logout} variant="contained">
             Log Out
           </Button>
         </>
