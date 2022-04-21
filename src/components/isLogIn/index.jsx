@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getToken } from "../redux/tokenSlice";
+import { getToken, selectToken } from "../redux/tokenSlice";
 import url from "../autorization";
 import Button from "@mui/material/Button";
 
 const LogIn = () => {
   const dispatch = useDispatch();
-  const isLogin = useSelector((state) => state.token.token);
+  const isLogin = useSelector(selectToken);
 
   useEffect(() => {
     let auth = window.localStorage.getItem("auth");

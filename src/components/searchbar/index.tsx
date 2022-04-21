@@ -1,6 +1,11 @@
 import "./style.css";
 import Input from "@mui/material/Input";
-const SearchBar = ({ handleSubmit, handleChange }) => {
+
+interface Props {
+  handleSubmit(event: React.FormEvent<HTMLFormElement>) : void;
+  handleChange(event: React.ChangeEvent<HTMLInputElement>): void;
+}
+const SearchBar = ({ handleSubmit, handleChange }:Props) => {
   return (
     <div className="App-search">
       <form onSubmit={handleSubmit}>
@@ -19,7 +24,6 @@ const SearchBar = ({ handleSubmit, handleChange }) => {
             borderRadius: "10px",
           }}
           type="submit"
-          onChange={handleSubmit}
         ></Input>
       </form>
     </div>

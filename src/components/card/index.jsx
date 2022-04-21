@@ -3,12 +3,7 @@ const Card = ({
   album_type,
   album_name,
   name,
-  release_date,
-  total_tracks,
-  urla,
   url,
-  urlAlbum,
-  urlLyric,
   handleClick,
   isSelected,
 }) => {

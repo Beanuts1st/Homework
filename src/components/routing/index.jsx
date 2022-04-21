@@ -3,9 +3,10 @@ import { Redirect } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 import Home from "../../pages/home";
 import LoginPage from "../../pages/loginPage";
+import { selectToken } from "../redux/tokenSlice";
 
 const Routing = () => {
-  const token = useSelector((state) => state.token.token);
+  const token = useSelector(selectToken);
 
   return (
     <div>

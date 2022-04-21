@@ -1,32 +1,34 @@
 import axios from "axios";
-import { useState } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import SearchBar from "../../components/searchbar";
-import CreatePlaylist from "../../components/playlist/";
+import CreatePlaylist from "../../components/playlist";
 import { useSelector } from "react-redux";
 import LogIn from "../../components/isLogIn";
 import Card from "../../components/card";
+import { selectToken } from "../../components/redux/tokenSlice";
+import { Item } from "../../initialize/playlist";
 
 const Home = () => {
   const [search, setSearch] = useState("");
   const [tracks, setTracks] = useState([]);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState<Item[]>([]);
   const [playlist, setPlaylist] = useState({
     title: "",
     description: "",
   });
+  const token = useSelector(selectToken);
 
-  const token = useSelector((state) => state.token.token);
-
-  const HandleSelected = (uri) => {
+  console.log(selected);
+  
+  const HandleSelected = (uri:Item) => {
     const alreadySelected = selected.find((selectedUri) => selectedUri === uri);
     alreadySelected
       ? setSelected(selected.filter((selectedUri) => selectedUri !== uri))
       : setSelected([...selected, uri]);
   };
-
-  const handleAddPlaylist = async (e) => {
-    e.preventDefault();
+  const handleAddPlaylist = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     axios
       .get("https://api.spotify.com/v1/me", {
         headers: {
@@ -48,10 +50,11 @@ const Home = () => {
               },
             }
           )
-          .then((res) => {
+          .then((res) => {      
+            const uriSelected = selected.map((item) => item.uri);      
             axios.post(
               `https://api.spotify.com/v1/playlists/${res.data.id}/tracks`,
-              { uris: selected },
+              { uris: uriSelected },
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -63,63 +66,58 @@ const Home = () => {
       });
   };
 
-  const getTracks = (search) => {
+  const getTracks = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     axios
       .get(`https://api.spotify.com/v1/search`, {
         headers: { Authorization: `Bearer ${token}` },
-        params: { q: search, type: "track,artist" },
+        params: { q: search, type: "track" },
       })
-      .then((res) => setTracks(res.data.tracks.items));
+      .then((res) => {
+        setTracks(res.data.tracks.items);
+        
+      });
   };
-  const handleChange = (e) => {
-    setSearch(e.target.value);
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setSearch(event.currentTarget.value);
   };
-  const handlePlaylistChange = (e) => {
-    const { name, value } = e.target;
+  const handlePlaylistChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const { name, value } = event.currentTarget;
     setPlaylist({ ...playlist, [name]: value });
   };
 
   return (
     <>
-      <div className="App-topwrapper">
-        <div className="App-header">
-          <LogIn />
-          <SearchBar
-            handleSubmit={(e) => {
-              getTracks(search);
-              e.preventDefault();
-            }}
-            handleChange={handleChange}
-          />
-        </div>
-        <div>
-          <CreatePlaylist
-            list={playlist}
-            handleChange={handlePlaylistChange}
-            handleSubmit={handleAddPlaylist}
-          />
-        </div>
+      <div className="App-header">
+        <LogIn />
+        <SearchBar
+          handleSubmit={(event) => {
+            getTracks(event);
+          }}
+          handleChange={handleChange}
+        />
       </div>
       {tracks.length > 0 ? (
         <div className="App-contentwrapper">
+          <CreatePlaylist
+            list={playlist}
+               handleChange={handlePlaylistChange}
+            handleSubmit={handleAddPlaylist}
+          />
           <div className="parent-card">
-            {tracks.map((e) => {
+            {tracks.map((uri:Item) => {
               const isSelected = selected.find(
-                (selectedUri) => selectedUri === e.uri
+                (selectedUri) => selectedUri === uri
               );
+              console.log(isSelected);
               return (
                 <Card
-                  key={e.id}
-                  album_type={e.album.album_type}
-                  album_name={e.album.name}
-                  urla={e.album.artists[0].external_urls.spotify}
-                  name={e.album.artists[0].name}
-                  release_date={e.album.release_date}
-                  total_tracks={e.album.total_tracks}
-                  url={e.album.images[0].url}
-                  urlLyric={e.external_urls.spotify}
-                  urlAlbum={e.album.external_urls.spotify}
-                  handleClick={() => HandleSelected(e.uri)}
+                  key={uri.id}
+                  album_type={uri.album.album_type}
+                  album_name={uri.album.name}
+                  name={uri.album.artists[0].name}
+                  url={uri.album.images[0].url}
+                  handleClick={() => HandleSelected(uri)}
                   isSelected={isSelected ? "deselect" : "select"}
                 />
               );

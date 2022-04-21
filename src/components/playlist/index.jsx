@@ -29,7 +29,12 @@ const CreatePlaylist = ({ list, handleChange, handleSubmit }) => {
         onClick={handleOpen}
         color="primary"
         aria-label="add"
-        style={{ position: "absolute", top: "10px", left: "70px" }}
+        style={{
+          position: "fixed",
+          right: "25px",
+          bottom: "30px",
+          overflow: "hidden",
+        }}
       >
         <AddIcon />
       </Fab>

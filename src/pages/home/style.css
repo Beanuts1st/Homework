@@ -1,16 +1,16 @@
 
-.App-topwrapper{
-    background-color: rgb(54, 52, 62);
-}
+
 .App-contentwrapper{
     background-color: rgb(54, 52, 62);
+    padding-top: 150px;
 }
 .App-footer{
     background-color: rgb(54, 52, 62);
-    height: 599px;
+    height: 713px;
 }
 
 .App-header{
+    opacity: 80%;
     background-color: #3a3843;
     min-height: 8vh;
     font-size: calc(10px + 2vmin);
@@ -20,6 +20,8 @@
     display: flex;
     flex-direction: row-reverse;
     align-items: baseline;
+    position: fixed;
+    width: 100%;
 }
 
 
