@@ -1,5 +1,5 @@
 var client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-var redirect_uri = "http://localhost:3000/";
+var redirect_uri = "https://witifyd.vercel.app/";
 var scope = "playlist-modify-private";
 var url = "https://accounts.spotify.com/authorize";
 url += "?response_type=token";
