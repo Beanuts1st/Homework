@@ -19,7 +19,6 @@ const Home = () => {
   });
   const token = useSelector(selectToken);
 
-  console.log(selected);
   
   const HandleSelected = (uri:Item) => {
     const alreadySelected = selected.find((selectedUri) => selectedUri === uri);
@@ -109,7 +108,7 @@ const Home = () => {
               const isSelected = selected.find(
                 (selectedUri) => selectedUri === uri
               );
-              console.log(isSelected);
+              
               return (
                 <Card
                   key={uri.id}
