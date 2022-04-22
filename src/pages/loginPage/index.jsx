@@ -21,9 +21,13 @@ const LoginPage = () => {
           </svg>
         </span>
         <div className="login-wrapper">
-          <h1>Halaman Pertama</h1>
+          <h1>Welcome To WTify</h1>
           <h2> Silahkan Login Terlebih dahulu</h2>
           <LogIn />
+          <br></br>
+          <br></br>
+          <br></br>
+          <h6>By Muhamad Rizal</h6>
         </div>
       </div>
     </div>

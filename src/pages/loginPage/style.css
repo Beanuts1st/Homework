@@ -22,10 +22,14 @@
 .parent .login-wrapper h1{
     font-size:2em;
 }
+.parent .login-wrapper h6{
+    color: white;
+}
 .parent .login-wrapper h2,h1{
     color: white;
     
 } 
+
 .blob{
     position: absolute;
     left: 8px;
@@ -33,7 +37,7 @@
 .parent .login-wrapper{
     position: absolute;
     left: 200px;
-    bottom: 250px;
+    bottom: 150px;
 }
 .parent{
 position: relative;
@@ -47,13 +51,13 @@ height: 700px;
     height: 700px;
 }
 .blobp {
-    width: 450px;
+    width: 500px;
 }
 .parent .login-wrapper {
     position: absolute;
-    left: 74px;
-    bottom: 250px;
-    font-size: small;
+    left: 112px;
+    bottom: 200px;
+    font-size: 12px;
 
 }
 .login-Page {
