@@ -91,7 +91,7 @@ const Home = () => {
       <div className="App-header">
         <LogIn />
         <SearchBar
-          handleSubmit={(event) => {
+          searchItem={(event) => {
             getTracks(event);
           }}
           handleChange={handleChange}

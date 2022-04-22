@@ -28,6 +28,3 @@ export type Item = {
 	id: string;
     uri: string;
 }
-export type selectedTrack = {
-	selected: string;
-}

@@ -3,6 +3,9 @@
     text-align: center;
     background-color: rgb(54, 52, 62);
     height: 713px;
+    overflow-x: hidden;
+    overflow: hidden;
+    
 }
 .login{
     background-color: #50c4e7;
@@ -16,18 +19,46 @@
 .login:hover{
     opacity: 70%;
 }
-.login-wrapper h1{
+.parent .login-wrapper h1{
     font-size:2em;
 }
-.login-wrapper h2,h1{
+.parent .login-wrapper h2,h1{
     color: white;
     
-}
+} 
 .blob{
-    position: relative;
-}
-.login-wrapper{
     position: absolute;
-    left: 580px;
+    left: 8px;
+}
+.parent .login-wrapper{
+    position: absolute;
+    left: 200px;
     bottom: 250px;
+}
+.parent{
+position: relative;
+display: inline-block;
+width: 700px;
+height: 700px;
+}
+@media(max-width: 570px){
+.parent {
+    width: 400px;
+    height: 700px;
+}
+.blobp {
+    width: 450px;
+}
+.parent .login-wrapper {
+    position: absolute;
+    left: 74px;
+    bottom: 250px;
+    font-size: small;
+
+}
+.login-Page {
+
+    height: 700px;
+
+}
 }

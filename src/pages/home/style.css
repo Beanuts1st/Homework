@@ -3,6 +3,7 @@
 .App-contentwrapper{
     background-color: rgb(54, 52, 62);
     padding-top: 150px;
+    overflow-y: hidden;
 }
 .App-footer{
     background-color: rgb(54, 52, 62);
@@ -35,4 +36,18 @@
     grid-gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
     background-color: #3a3843;
+}
+
+@media(max-width: 570px){
+    .parent-card {
+        max-width: 1200px;
+        margin: 0 auto;
+        border: 3px solid rgb(124, 118, 118);
+        padding: 20px;
+        box-sizing: border-box;
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(1, 1fr);
+        background-color: #3a3843;
+    }
 }

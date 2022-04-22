@@ -2,13 +2,13 @@ import "./style.css";
 import Input from "@mui/material/Input";
 
 interface Props {
-  handleSubmit(event: React.FormEvent<HTMLFormElement>) : void;
+  searchItem(event: React.FormEvent<HTMLFormElement>) : void;
   handleChange(event: React.ChangeEvent<HTMLInputElement>): void;
 }
-const SearchBar = ({ handleSubmit, handleChange }:Props) => {
+const SearchBar = ({ searchItem, handleChange }:Props) => {
   return (
     <div className="App-search">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={searchItem}>
         <Input
           style={{
             backgroundColor: "white ",
@@ -24,6 +24,8 @@ const SearchBar = ({ handleSubmit, handleChange }:Props) => {
             borderRadius: "10px",
           }}
           type="submit"
+          data-testid="searchbtn"
+          value="Go !!"
         ></Input>
       </form>
     </div>

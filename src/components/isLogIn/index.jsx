@@ -9,22 +9,22 @@ const LogIn = () => {
   const isLogin = useSelector(selectToken);
 
   useEffect(() => {
-    let auth = window.localStorage.getItem("auth");
+    let token = window.localStorage.getItem("token");
     const getQueryParams = window.location.hash;
     if (getQueryParams) {
-      auth = getQueryParams
+      token = getQueryParams
         .substring(1)
         .split("&")
         .find((token) => token.startsWith("access_token"))
         .split("=")[1];
     }
-    dispatch(getToken(auth));
-    window.localStorage.setItem("auth", auth);
+    dispatch(getToken(token));
+    window.localStorage.setItem("token", token);
   }, [dispatch, isLogin]);
 
   const logout = () => {
     dispatch(getToken(""));
-    window.localStorage.setItem("auth", "");
+    window.localStorage.setItem("token", "");
   };
   return (
     <>
